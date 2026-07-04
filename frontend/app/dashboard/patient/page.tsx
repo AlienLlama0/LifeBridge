@@ -1,18 +1,24 @@
+"use client";
+
 import { Bell, Heart, History, User } from "lucide-react";
 import { hospitals } from "@/lib/mock-data";
 import HospitalCard from "@/components/HospitalCard";
+import RouteGuard from "@/components/RouteGuard";
+import { useAuth } from "@/lib/auth-context";
 
-export default function PatientDashboard() {
+function PatientDashboardContent() {
+  const { user } = useAuth();
   const saved = hospitals.slice(0, 2);
+  const initial = user?.name?.trim().charAt(0) || "র";
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8">
       <div className="flex items-center gap-3">
         <div className="h-12 w-12 rounded-full bg-clinical-900 text-white flex items-center justify-center font-display font-bold text-lg">
-          অ
+          {initial}
         </div>
         <div>
-          <h1 className="font-display font-bold text-xl">স্বাগতম, আলোক</h1>
+          <h1 className="font-display font-bold text-xl">স্বাগতম, {user?.name || "রোগী"}</h1>
           <p className="text-sm text-ink/50">আপনার সংরক্ষিত হাসপাতাল ও সাম্প্রতিক কার্যক্রম</p>
         </div>
       </div>
@@ -55,5 +61,13 @@ export default function PatientDashboard() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function PatientDashboard() {
+  return (
+    <RouteGuard role="patient">
+      <PatientDashboardContent />
+    </RouteGuard>
   );
 }
