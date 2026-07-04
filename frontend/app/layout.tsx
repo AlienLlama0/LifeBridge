@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Baloo_Da_2, Hind_Siliguri, Roboto_Mono } from "next/font/google";
+import { AuthProvider } from "@/lib/auth-context";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -37,10 +38,12 @@ export default function RootLayout({
   return (
     <html lang="bn" className={`${baloo.variable} ${hind.variable} ${robotoMono.variable}`}>
       <body className="font-body bg-canvas text-ink min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <EmergencyButton floating />
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <EmergencyButton floating />
+        </AuthProvider>
       </body>
     </html>
   );

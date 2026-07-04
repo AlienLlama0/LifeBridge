@@ -27,14 +27,6 @@ export default function HomePage() {
 
           {/* City-wide live counters — signature element */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 max-w-2xl">
-            <div className="rounded-xl bg-white/10 border border-white/10 p-4">
-              <p className="text-xs text-clinical-100/70">হাসপাতাল</p>
-              <p className="font-mono font-bold text-2xl sm:text-3xl mt-1">{cityTotals.totalHospitals}</p>
-            </div>
-            <div className="rounded-xl bg-white/10 border border-white/10 p-4">
-              <p className="text-xs text-clinical-100/70">মোট বেড</p>
-              <p className="font-mono font-bold text-2xl sm:text-3xl mt-1">{cityTotals.totalBeds}</p>
-            </div>
             <div className="rounded-xl bg-vital/20 border border-vital/30 p-4">
               <p className="text-xs text-vital">এখন খালি বেড</p>
               <p className="font-mono font-bold text-2xl sm:text-3xl mt-1 text-vital">
